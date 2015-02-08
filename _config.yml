@@ -6,7 +6,7 @@ relative_permalinks: true
 title:            Michał Z.
 tagline:          The Jekyll Butler
 url:              http://getpoole.com
-paginate:         1
+paginate:         5
 baseurl:          /
 author:
   name:           Mark Otto
