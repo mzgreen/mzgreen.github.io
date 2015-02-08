@@ -14,7 +14,11 @@ title: Home
 
     <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">{{ post.date | date_to_string }}</time>
 
-    {{ post.content }}
+    <!--{{ post.content }}-->
+    <div class="entry">
+    {{ post.content | truncatewords:40}}
+    </div>
+    
   </article>
   {% endfor %}
 </div>
