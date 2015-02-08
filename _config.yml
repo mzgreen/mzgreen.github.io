@@ -12,6 +12,9 @@ author:
   name:           Mark Otto
   url:            https://twitter.com/mdo
   email:          markdotto@gmail.com
+  
+# Your disqus shortname, entering this will enable commenting on posts
+disqus: mzgreen
 
 # Custom vars
 version:          1.0.0
