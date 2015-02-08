@@ -18,7 +18,7 @@ title: Home
     <div class="entry">
     {{ post.content | truncatewords:40}}
     </div>
-    <a href="{{ site.page[1] }}">Read More</a>
+    <a href="{{ site.page[1] }}{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     
     
   </article>
