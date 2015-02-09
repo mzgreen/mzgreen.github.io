@@ -4,14 +4,14 @@ relative_permalinks: true
 
 # Setup
 title:            Michał Z.
-tagline:          The Jekyll Butler
-url:              http://getpoole.com
+tagline:          
+url:              http://mzgreen.github.io
 paginate:         5
 baseurl:          /
 author:
-  name:           Mark Otto
-  url:            https://twitter.com/mdo
-  email:          markdotto@gmail.com
+  name:           Michał Z.
+  url:            http://mzgreen.github.io
+  email:          
   
 # Your disqus shortname, entering this will enable commenting on posts
 disqus: mzgreen
