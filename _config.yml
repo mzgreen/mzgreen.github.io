@@ -27,14 +27,14 @@ pages_list:
   
 # Includes an icon in the footer for each username you enter
 footer-links:
-dribbble:
-email:
-facebook: 
-flickr: 
-github: mzgreen
-instagram: 
-linkedin: frogermcs
-pinterest:
-rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
-twitter: mzmzgreen
-stackoverflow:  # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+  dribbble:
+  email:
+  facebook: 
+  flickr: 
+  github: mzgreen
+  instagram: 
+  linkedin: frogermcs
+  pinterest:
+  rss: # just type anything here for a working RSS icon, make sure you set the "url" above!
+  twitter: mzmzgreen
+  stackoverflow:  # your stackoverflow profile, e.g. "users/50476/bart-kiers"
