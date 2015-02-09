@@ -6,6 +6,6 @@ layout: default
   <h1 class="post-title">{{ page.title }}</h1>
   <time datetime="{{ page.date | date_to_xmlschema }}" class="page-date">{{ page.date | date_to_string }}</time>
   {{ content }}
+  <p>{% include twitter_footer.html %}</p>
+   {% include disqus.html disqus_identifier=page.disqus_identifier %}
 </article>
-
- {% include disqus.html disqus_identifier=page.disqus_identifier %}
