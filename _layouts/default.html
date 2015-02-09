@@ -14,7 +14,7 @@
           &nbsp;&nbsp;&nbsp;
           <small><a href="{{ page[1]  }}">{{ page[0] }}</a></small>
         {% endfor %}
-        {% include svg-icons.html %}
+        
         </h3>
       </header>
 
@@ -24,7 +24,8 @@
 
       <footer class="footer">
         <small>
-          &copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.
+        {% include svg-icons.html %}
+          <!--&copy; <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: '%Y' }}</time>. All rights reserved.-->
         </small>
       </footer>
     </div>
