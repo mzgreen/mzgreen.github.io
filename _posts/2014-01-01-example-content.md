@@ -10,7 +10,9 @@ title: Example content
 
 Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. *Aenean eu leo quam.* Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 
-![Android Lollipop screenshot](http://upload.wikimedia.org/wikipedia/commons/d/dd/Muybridge_race_horse_animated.gif "Android Lollipop screenshot")
+![Toolbar without styling](/images/1/demo.gif "Toolbar without styling")
+
+![Toolbar without styling](/images/4/clipped.png "Toolbar without styling")
 
 > Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
 
