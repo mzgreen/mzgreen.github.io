@@ -5,6 +5,7 @@ tags: [android, material design, ui, animations, Toolbar, FAB]
 ---
 
 In this post we will see how to achieve an effect that you can observe in Google+ app - hiding Toolbar and FAB (and any other views) when list is scrolling down and showing it again when it’s scrolling up. This behavior is mentioned in [Material Design Checklist].
+
 > "Where appropriate, upon scrolling down, the app bar can scroll off the screen, leaving more vertical space for content. Upon scrolling back up, the app bar should be shown again.”
 
 This is how our goal should look:
@@ -13,8 +14,10 @@ This is how our goal should look:
 
 We will be using `RecyclerView` for our list but it’s possible to implement it in any other scrolling container (with a little more work in some cases i.e. `ListView`).
 There are two ways that come to my mind on how to achieve this:
+
 1. With adding a padding to the list. 
 2. With adding a header to the list.
+
 I decided to implement only the second one because I saw multiple questions on how to add a header to `RecyclerView` and this is a good opportunity to cover this but I will also briefly descripe the first one.
 
 #Let’s get started!
