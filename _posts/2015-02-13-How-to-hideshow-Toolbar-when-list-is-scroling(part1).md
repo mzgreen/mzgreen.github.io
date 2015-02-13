@@ -272,6 +272,7 @@ private boolean isPositionHeader(int position) {
 {% endhighlight %}
 
 Here is how it works:
+
 1. We need to define types of items that the `Recycler` will display. `RecyclerView` is a very flexible component. Item types are used when you want to have different layout for some of your list items. And this is exactly what we want to do - our first item will be a header view, so it will be different from the rest of items.
 2. We need to tell the `Recycler` how many item types we want it to display.
 3. We need to modify `onBindViewHolder()` method to bind a normal item if it’s type is `TYPE_ITEM` and a header item if it’s type is `TYPE_HEADER`.
@@ -345,6 +346,7 @@ if((controlsVisible && dy>0) || (!controlsVisible && dy<0)) {
   scrolledDistance += dy;
 }
 {% endhighlight %}
+
 2. Now if this total scroll amount exceeds some threshold (that you can adjust - the bigger it is, the more you have to scroll to show/hide views) we show/hide views depending on the direction (dy>0 means that we are scrolling down, dy<0 means that we are scrolling up).
 {% highlight Java %}
 if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
@@ -357,6 +359,7 @@ if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
   scrolledDistance = 0;
 }
 {% endhighlight %}
+
 3. We don’t actually show/hide views in our scroll listener class, instead we make it abstract and call show()/hide() methods, so the caller can implement them as he wants.
 
 Now we need to add this listener to our `RecyclerView`:
