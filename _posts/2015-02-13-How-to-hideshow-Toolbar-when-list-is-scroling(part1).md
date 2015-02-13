@@ -20,7 +20,7 @@ There are two ways that come to my mind on how to achieve this:
 
 I decided to implement only the second one because I saw multiple questions on how to add a header to `RecyclerView` and this is a good opportunity to cover this but I will also briefly descripe the first one.
 
-#Let’s get started!
+##Let’s get started!
 
 We will begin from creating our project and adding necesarry libraries:
 {% highlight Groovy %}
@@ -106,6 +106,7 @@ private void initRecyclerView() {
 {% endhighlight %}
 
 As you can see it’s a relatively small class. It only implements onCreate which does the following things:
+
 1. Initializing `Toolbar`
 2. Getting a reference to our FAB
 3. Initializing `RecyclerView`
@@ -203,7 +204,7 @@ First option will be to add a paddingTop to our `RecyclerVie`w and set it to `To
 
 And it would do the thing. But as I said, I wanted to show you another way - maybe a little more complicated which involves adding a header to the list.
 
-#Adding a header to the `RecyclerView`:
+##Adding a header to the `RecyclerView`:
 
 First we need to modify our `Adapter` a little:
 {% highlight Java %}
@@ -299,7 +300,7 @@ Much better, right?
 So to sum up, we have added a header to our `RecyclerView` that has the same height as `Toolbar`, so now our `Toolbar` hides header view (which is an empty view) and all of our list items are perfectly visible.
 And finally we can implement showing/hiding views when list is scrolling.
 
-#Showing/hiding views when list is scrolling.
+##Showing/hiding views when list is scrolling.
 
 To achieve this we will create only one more class - `OnScrollListener` for `RecyclerView`.
 {% highlight Java%}
@@ -337,6 +338,7 @@ As you can see there is only one method where all the magic happens - `onScrolle
 It’s parameters - dx, dy are the amounts of horizontal and vertical scrolls. Actually they are deltas, so it’s the amount between two events, not total scroll amount.
 
 Basically an algorithm works like this:
+
 1. We calculate total scroll amount (sum of deltas) but only if views are hidden and we are scrolling up or if views are visible and we are scrolling down because these are the cases that we care about.
 {% highlight Java %}
 if((controlsVisible && dy>0) || (!controlsVisible && dy<0)) {
@@ -442,8 +444,8 @@ In the next part I will show you how to make it to behave like scrolling in Goog
 
 If you have any questions feel free to ask them in the comments below.
 
-##Code
-Source code of the full project described in this post is available on GitHub repo.
+###Code
+Source code of the full project described in this post is available on GitHub [repo].
 
  *- Michał Z.*
 
