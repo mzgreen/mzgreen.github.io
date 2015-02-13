@@ -27,7 +27,7 @@ dependencies {
   compile "com.android.support:recyclerview-v7:21.0.0"
   compile 'com.android.support:cardview-v7:21.0.3'
 } 
- {% endhighlight %}
+{% endhighlight %}
 
 Now we should define `styles.xml` so that our app will use Material Theme but without `ActionBar` (we will be using `Toolbar`):
 {% highlight xml %}
@@ -37,8 +37,32 @@ Now we should define `styles.xml` so that our app will use Material Theme but wi
 </style>
  {% endhighlight %}
 
-The next thing is to create our Activity layout:
-[xml z main activity]
+The next thing is to create our `Activity` layout:
+{% highlight xml %}
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+<android.support.v7.widget.RecyclerView
+android:id="@+id/recyclerView"
+android:layout_width="match_parent"
+android:layout_height="match_parent"/>
+<android.support.v7.widget.Toolbar
+android:id="@+id/toolbar"
+android:layout_width="match_parent"
+android:layout_height="?attr/actionBarSize"
+android:background="?attr/colorPrimary"/>
+<ImageButton
+android:id="@+id/fabButton"
+android:layout_width="56dp"
+android:layout_height="56dp"
+android:layout_gravity="bottom|right"
+android:layout_marginBottom="16dp"
+android:layout_marginRight="16dp"
+android:background="@drawable/fab_background"
+android:src="@drawable/ic_favorite_outline_white_24dp"
+android:contentDescription="@string/fab_description"/>
+</FrameLayout>
+{% endhighlight %}
 
 It’s a simple layout with RecyclerView, Toolbar and ImageButton which will be our FAB. We need to put them in a FrameLayout because Toolbar needs to be overlayed on RecyclerView. If we don’t do this, there will be an empty space visible above the list when we hide the Toolbar.
 
