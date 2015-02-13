@@ -340,14 +340,14 @@ It’s parameters - dx, dy are the amounts of horizontal and vertical scrolls. A
 
 Basically an algorithm works like this:
 
-1. We calculate total scroll amount (sum of deltas) but only if views are hidden and we are scrolling up or if views are visible and we are scrolling down because these are the cases that we care about.
+* We calculate total scroll amount (sum of deltas) but only if views are hidden and we are scrolling up or if views are visible and we are scrolling down because these are the cases that we care about.
 {% highlight Java %}
 if((controlsVisible && dy>0) || (!controlsVisible && dy<0)) {
   scrolledDistance += dy;
 }
 {% endhighlight %}
 
-2. Now if this total scroll amount exceeds some threshold (that you can adjust - the bigger it is, the more you have to scroll to show/hide views) we show/hide views depending on the direction (dy>0 means that we are scrolling down, dy<0 means that we are scrolling up).
+* Now if this total scroll amount exceeds some threshold (that you can adjust - the bigger it is, the more you have to scroll to show/hide views) we show/hide views depending on the direction (dy>0 means that we are scrolling down, dy<0 means that we are scrolling up).
 {% highlight Java %}
 if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
   onHide();
@@ -360,7 +360,7 @@ if (scrolledDistance > HIDE_THRESHOLD && controlsVisible) {
 }
 {% endhighlight %}
 
-3. We don’t actually show/hide views in our scroll listener class, instead we make it abstract and call show()/hide() methods, so the caller can implement them as he wants.
+* We don’t actually show/hide views in our scroll listener class, instead we make it abstract and call show()/hide() methods, so the caller can implement them as he wants.
 
 Now we need to add this listener to our `RecyclerView`:
 {% highlight Java %}
