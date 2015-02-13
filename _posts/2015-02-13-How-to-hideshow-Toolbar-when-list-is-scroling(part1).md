@@ -20,7 +20,14 @@ I decided to implement only the second one because I saw multiple questions on h
 #Let’s get started!
 
 We will begin from creating our project and adding necesarry libraries:
-{% gist mzgreen/129542ec1164deca459b build.gradle %}
+{% highlight Groovy %}
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  compile 'com.android.support:appcompat-v7:21.0.3'
+  compile "com.android.support:recyclerview-v7:21.0.0"
+  compile 'com.android.support:cardview-v7:21.0.3'
+} 
+ {% endhighlight %}
 
 Now we should define `styles.xml` so that our app will use Material Theme but without `ActionBar` (we will be using `Toolbar`):
 {% highlight xml %}
