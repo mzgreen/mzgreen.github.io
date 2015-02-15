@@ -49,7 +49,7 @@ body {
 
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
 }
 @media (min-width: 38em) {
@@ -137,7 +137,7 @@ hr {
 }
 
 abbr {
-  font-size: 75%;
+  font-size: 85%;
   font-weight: bold;
   color: #555;
   text-transform: uppercase;
@@ -154,7 +154,7 @@ pre {
 }
 code {
   padding: .25em .5em;
-  font-size: 75%;
+  font-size: 85%;
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -286,7 +286,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .container {
-  max-width: 48rem;
+  max-width: 38rem;
   padding-left:  1rem;
   padding-right: 1rem;
   margin-left:  auto;
