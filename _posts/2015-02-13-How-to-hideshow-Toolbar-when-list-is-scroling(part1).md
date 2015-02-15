@@ -58,7 +58,7 @@ It’s a basic `RecyclerView.Adapter` implementation. There is nothing special a
 We got all the pieces in place so let’s run it!
 ![Clipped screenshot](/images/1/clipped.png "Clipped screenshot")
 
-Oh, what is this?! The `Toolbar` hides our list items and as you have probably noticed it’s because we are using `FrameLayout` in our `activity_main.xml`. This is the moment when we have two options that I mentioned at te beginning.
+Oh wait.. what is this? The `Toolbar` hides our list items and as you have probably noticed it’s because we are using `FrameLayout` in our `activity_main.xml`. This is the moment when we have two options that I mentioned at te beginning.
 First option will be to add a paddingTop to our `RecyclerVie`w and set it to `Toolbar` height. But we have to be careful because `RecyclerView` will clip it’s chilren to padding by default so we have to turn it off. Our layout would look like this:
 {% gist mzgreen/870bc2f012dc14626e8d %}
 
@@ -71,23 +71,23 @@ First we need to modify our `Adapter` a little:
 
 Here is how it works:
 
-1. We need to define types of items that the `Recycler` will display. `RecyclerView` is a very flexible component. Item types are used when you want to have different layout for some of your list items. And this is exactly what we want to do - our first item will be a header view, so it will be different from the rest of items.
-2. We need to tell the `Recycler` how many item types we want it to display.
-3. We need to modify `onBindViewHolder()` method to bind a normal item if it’s type is `TYPE_ITEM` and a header item if it’s type is `TYPE_HEADER`.
-4. We need to modify `getItemCount()` - we return a number of items in our dataset +1 because we have also a header.
+1. We need to define types of items that the `Recycler` will display. `RecyclerView` is a very flexible component. Item types are used when you want to have different layout for some of your list items. And this is exactly what we want to do - our first item will be a header view, so it will be different from the rest of items (lines 3-4).
+2. We need to tell the `Recycler` which type item it wants to display is (lines 49-54).
+3. We need to modify `onCreateViewHolder` and `onBindViewHolder()` methods to return and bind a normal item if it’s type is `TYPE_ITEM` and a header item if it’s type is `TYPE_HEADER` (lines 14-34).
+4. We need to modify `getItemCount()` - we return a number of items in our dataset +1 because we have also a header (lines 43-45).
 
 Now let’s create a layout and `ViewHolder` for the header view.
 
 {% gist mzgreen/0b81a1b62a681e0fc208 %}
 
-The layout is very simple. Important thing to notice is it’s height to be equal to our `Toolbar` height. And it's `ViewHolder` is also pretty straightforward:
+The layout is very simple. Important thing to notice is that it’s height needs to be equal to our `Toolbar` height. And it's `ViewHolder` is also pretty straightforward:
 {% gist mzgreen/670be3ca26409c52a609 %}
 
-Ok, it’s done so let’s run it!
+Ok, it’s done so we can try it out!
 ![Fixed clipping screenshot](/images/1/clipping_fixed.png "Fixed clipping screenshot")
 
 Much better, right?
-So to sum up, we have added a header to our `RecyclerView` that has the same height as `Toolbar`, so now our `Toolbar` hides header view (which is an empty view) and all of our list items are perfectly visible.
+So to sum up, we have added a header to our `RecyclerView` that has the same height as `Toolbar` and now our `Toolbar` hides header view (which is an empty view) and all of our list items are perfectly visible.
 And finally we can implement showing/hiding views when list is scrolling.
 
 ##Showing/hiding views when list is scrolling.
@@ -100,13 +100,13 @@ It’s parameters - dx, dy are the amounts of horizontal and vertical scrolls. A
 
 Basically an algorithm works like this:
 
-* We calculate total scroll amount (sum of deltas) but only if views are hidden and we are scrolling up or if views are visible and we are scrolling down because these are the cases that we care about.
+* We are calculating total scroll amount (sum of deltas) but only if views are hidden and we are scrolling up or if views are visible and we are scrolling down because these are the cases that we care about.
 {% gist mzgreen/0faae3937a0b83086899 %}
 
-* Now if this total scroll amount exceeds some threshold (that you can adjust - the bigger it is, the more you have to scroll to show/hide views) we show/hide views depending on the direction (dy>0 means that we are scrolling down, dy<0 means that we are scrolling up).
+* Now if this total scroll amount exceeds some threshold (that you can adjust - the bigger it is, the more you have to scroll to show/hide views) we are showing/hiding views depending on the direction (dy>0 means that we are scrolling down, dy<0 means that we are scrolling up).
 {% gist mzgreen/df58b5f74691ab030211 %}
 
-* We don’t actually show/hide views in our scroll listener class, instead we make it abstract and call show()/hide() methods, so the caller can implement them as he wants.
+* We aren't actually showing/hiding views in our scroll listener class, instead we make it abstract and call show()/hide() methods, so the caller can implement them.
 
 Now we need to add this listener to our `RecyclerView`:
 {% gist mzgreen/58fb67f620d95bc45d87 %}
@@ -116,10 +116,10 @@ And here are the methods where we animate our views:
 
 We have to take margins into account when we are hiding views, otherwise fab would’t fully hide.
 
-It’s time to run our app!
+It’s time to test our app!
 ![Broken scrolling screenshot](/images/1/broken_gif.gif "Broken scrolling screenshot")
 
-It looks almost good! Almost because there is a little bug - if you are at the top of the list and threshold is small, you can hide the `Toolbar` and have empty space at the top of the list visible. Fortunately there is an easy fix for this. All we need to do is to detect if the first item of the list is visible and trigger our show/hide logic only if it’s not.
+It looks almost good. Almost because there is a little bug - if you are at the top of the list and threshold is small, you can hide the `Toolbar` and have empty space at the top of the list visible. Fortunately there is an easy fix for this. All we need to do is to detect if the first item of the list is visible and trigger our show/hide logic only if it’s not.
 {% gist mzgreen/b386f4fb5d3cd82b0de0 %}
 
 After this change if the first item is visible and views are hidder, we are showing them, otherwise it works as before. Let’s run our project again and see if it helped.
@@ -129,7 +129,7 @@ Yup! It seems like everything is working like a charm now :)
 
 It was the first blog post in my life so forgive me if it was boring or if I have made some mistakes. I will improve in the future.
 
-Oh and if you don’t want to use this method, you can still use the second one with adding padding to the `RecyclerView`. There will be a need to change the logic in our scroll listener a little bit (only the part with detecting if first list item is visible) but it’s so simple that I will leave it to you as a homework ;)
+And if you don’t want to use the method with adding a header, you can still use the second one with adding padding to the `RecyclerView`. There will be a need to change the logic in our scroll listener a little bit (only the part with detecting if first list item is visible) but it’s so simple that I will leave it to you as a homework ;)
 
 In the next part I will show you how to make it to behave like scrolling in Google Play Store app.
 
