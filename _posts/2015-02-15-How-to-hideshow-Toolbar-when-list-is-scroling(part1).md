@@ -138,8 +138,11 @@ If you have any questions feel free to ask them in the comments below.
 ###Code
 Source code of the full project described in this post is available on GitHub [repo].
 
+Thanks to [Mirek Stanek] for proof reading this post. 
+
  *- Michał Z.*
 
 [Material Design Checklist]:http://android-developers.blogspot.com/2014/10/material-design-on-android-checklist.html
 [series of posts]:https://blog.stylingandroid.com/material-part-4/
 [repo]:https://github.com/mzgreen/HideOnScrollExample
+[Mirek Stanek]:https://twitter.com/froger_mcs
