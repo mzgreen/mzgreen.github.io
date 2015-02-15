@@ -157,6 +157,8 @@ public void setItemText(CharSequence text) {
 Our list will be showing cards with only text so this is it - easy!
 
 Now we can jump to the `RecyclerAdapter` code:
+{% gist mzgreen/485e44452884cd6e1be7 %}
+
 {% highlight Java %}
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
   private List<String> mItemList;
