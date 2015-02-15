@@ -49,12 +49,12 @@ body {
 
 html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
 }
-@media (min-width: 48em) {
+@media (min-width: 38em) {
   html {
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 
@@ -88,19 +88,19 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 h2 {
   margin-top: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 h3 {
   margin-top: 1.5rem;
-  font-size: 0.75rem;
+  font-size: 1.25rem;
 }
 h4, h5, h6 {
   margin-top: 1rem;
-  font-size: 0.5rem;
+  font-size: 1rem;
 }
 
 /* Body text */
@@ -154,7 +154,7 @@ pre {
 }
 code {
   padding: .25em .5em;
-  font-size: 0.8rem;
+  font-size: 75%;
   color: #bf616a;
   background-color: #f9f9f9;
   border-radius: 3px;
@@ -164,7 +164,7 @@ pre {
   margin-top: 0;
   margin-bottom: 1rem;
   padding: 1rem;
-  font-size: .7rem;
+  font-size: .8rem;
   line-height: 1.4;
   white-space: pre;
   white-space: pre-wrap;
