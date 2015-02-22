@@ -129,7 +129,7 @@ Yup! It seems like everything is working like a charm now :)
 
 It was the first blog post in my life so forgive me if it was boring or if I have made some mistakes. I will improve in the future.
 
-And if you don’t want to use the method with adding a header, you can still use the second one with adding padding to the `RecyclerView`. There will be a need to change the logic in our scroll listener a little bit (only the part with detecting if first list item is visible) but it’s so simple that I will leave it to you as a homework ;)
+And if you don’t want to use the method with adding a header, you can still use the second one with adding padding to the `RecyclerView`. Just add the padding and use `HidingScrollListener` that we've just created and it will work :)
 
 In the next part I will show you how to make it to behave like scrolling in Google Play Store app.
 
