@@ -124,6 +124,7 @@ Source code of the full project described in this post is available on GitHub [r
 
 [part 1]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [previous part]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
+[previous post]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [project]:https://github.com/mzgreen/HideOnScrollExample
 [before]:https://gist.github.com/mzgreen/b44afa284a0c3c4e0b9c#file-recycler_item-xml
 [here]:https://gist.github.com/mzgreen/f0dc97062bb5f1c534b1#file-recycleradapter-java
