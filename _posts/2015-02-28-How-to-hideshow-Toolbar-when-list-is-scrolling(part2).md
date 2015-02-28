@@ -110,7 +110,7 @@ It's working very well now :) And it even works with other LayoutManagers withou
 
 ![Grid layout](/images/2/grid.png "Grid layout")
 
-There was a question in the comment about saving scroll state, and it truly is a problem a little bit. If our item's text would be long enough to be 2 lines in portrait mode and 1 line in landscape mode then our items heights will be different in portrait and landscape. So if we would scroll to position let's say 100 in portrait and rotate the device with saving `totalScrollOffset` and after rotation we would scroll up the list to the top, then `totalScrollOffset` could be different than 0. There is no simple fix for that but for our usecase it doesn't matter. And if you really want to do something about it, I would reset `totalScrollOffset` to 0 and show the `Toolbar` after rotation.
+There was a question in the comment about saving scroll state, and it truly is a problem a little bit. If our item's text would be long enough to be 2 lines in portrait mode and 1 line in landscape mode then our items heights will be different in portrait and landscape. So if we would scroll to position let's say 100 in portrait and rotate the device with saving `mTotalScrolledDistance` and after rotation we would scroll up the list to the top, then `mTotalScrolledDistance` could be different than 0. There is no simple fix for that but for our usecase it doesn't matter. And if you really want to do something about it, I would reset `mTotalScrolledDistance` to 0 and show the `Toolbar` after rotation.
 
 So this is the end of this series of posts. I'm glad that some of you have learned something from the previous part. Thanks for the kind words :) I will continue writing this blog, but I don;t know what will be in the next posts yet:)
 
