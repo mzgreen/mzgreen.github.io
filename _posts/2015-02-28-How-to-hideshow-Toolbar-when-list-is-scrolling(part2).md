@@ -9,7 +9,7 @@ This is a second (and the last) post of this series. If you haven't read [part 1
 Before we start, I would like to say that I've refactored this [project] a little bit - it's split in two `Activities`: `PartOneActivity` and `PartTwoActivity` that are started from `MainActivity`. Code is in the packages `partone` and `parttwo` so you can easily find classes that interest you.
 
 This is how our final effect will look compared to Play Store Toolbar:
-![Play Store gif](/images/2/playstore.gif "Play Store gif") ![Working example gif](/images/2/goal.gif "Working example gif")
+![Working example gif](/images/2/goal.gif "Working example gif") ![Play Store gif](/images/2/playstore.gif "Play Store gif")
 
 ## First things first
 I won't show `build.gradle` file because it's the same as in [part 1] so we will start from creating a layout for our `Activity`:
