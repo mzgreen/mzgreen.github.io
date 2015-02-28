@@ -52,6 +52,7 @@ Let's revisit out `HidingScrollListener` code:
 {% gist /mzgreen/3e867d8db87aa23aa376 %}
 
 It got a little bit more complicated but there is nothing scary in there. We've just overrided the second method of the `RecyclerView.OnScrollListener` class which is `onScrollStateChanged()`. This is what we're doing in this method:
+
 1. We are checking if the list is in `RecyclerView.SCROLL_STATE_IDLE` state so it's not scrolling nor flinging (because if it is, we'are translating Y position of the `Toolbar` manually - like before).
 2. If we lift up our finger and list has stopped (it's in `RecyclerView.SCROLL_STATE_IDLE` state) we have to check if it's visible and if it is, then this means that we have to hide it if `mToolbarOffset` is bigger than `HIDE_THRESHOLD` or we have to show it again if `mToolbarOffset` is lower than `SHOW_THRESHOLD`:
 {% gist /mzgreen/a4f4fb043bc902e386c5 %}
