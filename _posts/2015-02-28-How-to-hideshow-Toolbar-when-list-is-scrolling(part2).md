@@ -53,11 +53,11 @@ Let's revisit out `HidingScrollListener` code:
 
 It got a little bit more complicated but there is nothing scary in there. We've just overrided the second method of the `RecyclerView.OnScrollListener` class which is `onScrollStateChanged()`. This is what we're doing in this method:
 
-1. We are checking if the list is in `RecyclerView.SCROLL_STATE_IDLE` state so it's not scrolling nor flinging (because if it is, we'are translating Y position of the `Toolbar` manually - like before).
-2. If we lift up our finger and list has stopped (it's in `RecyclerView.SCROLL_STATE_IDLE` state) we have to check if it's visible and if it is, then this means that we have to hide it if `mToolbarOffset` is bigger than `HIDE_THRESHOLD` or we have to show it again if `mToolbarOffset` is lower than `SHOW_THRESHOLD`:
+* We are checking if the list is in `RecyclerView.SCROLL_STATE_IDLE` state so it's not scrolling nor flinging (because if it is, we'are translating Y position of the `Toolbar` manually - like before).
+* If we lift up our finger and list has stopped (it's in `RecyclerView.SCROLL_STATE_IDLE` state) we have to check if it's visible and if it is, then this means that we have to hide it if `mToolbarOffset` is bigger than `HIDE_THRESHOLD` or we have to show it again if `mToolbarOffset` is lower than `SHOW_THRESHOLD`:
 {% gist /mzgreen/a4f4fb043bc902e386c5 %}
 
-and if it's not visible then we have to do the opposite - if `mToolbarOffset` (which now is calculated from top position so it's `mToolbarHeight - mToolbarOffset`) is bigger than `SHOW_THRESHOLD` then we are showing it and if it's lower than `HIDE_THRESHOLD` then we are hiding it again:
+* And if it's not visible then we have to do the opposite - if `mToolbarOffset` (which now is calculated from top position so it's `mToolbarHeight - mToolbarOffset`) is bigger than `SHOW_THRESHOLD` then we are showing it and if it's lower than `HIDE_THRESHOLD` then we are hiding it again:
 {% gist /mzgreen/fa7bb444c05315258dd3 %}
 
 `onScrolled()` stays the same as it was, and we don't have to change anything else here. The last thing that we need to do is to implement our two new abstract methods in `PartTwoActivity` class:
