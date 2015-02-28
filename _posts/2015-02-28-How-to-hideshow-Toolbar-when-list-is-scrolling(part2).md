@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: How to hide/show Toolbar when list is scrolling (part 2)
 tags: [android, material design, ui, animations, Toolbar, Tabs]
