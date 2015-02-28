@@ -119,7 +119,9 @@ Happy coding!
 ###Code
 Source code of the full project described in this post is available on GitHub [repo].
 
-- Michał Z.
+ *- Michał Z.*
+
+
 [part 1]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [previous part]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [project]:https://github.com/mzgreen/HideOnScrollExample
