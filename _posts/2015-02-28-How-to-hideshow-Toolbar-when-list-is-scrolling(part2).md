@@ -112,9 +112,9 @@ It's working very well now :) And it even works with other LayoutManagers withou
 
 There was a question in the comment about saving scroll state, and it truly is a problem a little bit. If our item's text would be long enough to be 2 lines in portrait mode and 1 line in landscape mode then our items heights will be different in portrait and landscape. So if we would scroll to position let's say 100 in portrait and rotate the device with saving `mTotalScrolledDistance` and after rotation we would scroll up the list to the top, then `mTotalScrolledDistance` could be different than 0. There is no simple fix for that but for our usecase it doesn't matter. And if you really want to do something about it, I would reset `mTotalScrolledDistance` to 0 and show the `Toolbar` after rotation.
 
-So this is the end of this series of posts. I'm glad that some of you have learned something from the previous part. Thanks for the kind words :) I will continue writing this blog, but I don;t know what will be in the next posts yet:)
+So this is the end of this series of posts. I'm glad that some of you have learned something from the previous part. Thanks for the kind words :) I will continue writing this blog, but I don't know what will be in the next posts yet:)
 
-I also want to say that I think that methods described in this and previous(link) posts work pretty good but I didn't test them well enough, so I'm not sure if they are ready to use in production code (see for example the saving state problem described above). The goal of this series was to show that you can achieve effects that looks difficult using only simple methods and standard APIs. I've also found out that this method can be used for many other things (e.g. creating sticking tabs with parallax background - like in Google+ profile screen).
+I also want to say that I think that methods described in this and [previous] post work pretty good but I didn't test them well enough, so I'm not sure if they are ready to use in production code (see for example the saving state problem described above). The goal of this series was to show that you can achieve effects that looks difficult using only simple methods and standard APIs. I've also found out that this method can be used for many other things (e.g. creating sticking tabs with parallax background - like in Google+ profile screen).
 Happy coding!
 
 ###Code
@@ -126,6 +126,7 @@ Source code of the full project described in this post is available on GitHub [r
 [part 1]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [previous part]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [previous post]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
+[previous]:http://mzgreen.github.io/2015/02/15/How-to-hideshow-Toolbar-when-list-is-scroling%28part1%29/
 [project]:https://github.com/mzgreen/HideOnScrollExample
 [before]:https://gist.github.com/mzgreen/b44afa284a0c3c4e0b9c#file-recycler_item-xml
 [here]:https://gist.github.com/mzgreen/f0dc97062bb5f1c534b1#file-recycleradapter-java
