@@ -14,35 +14,35 @@ This is how our final effect will look compared to Play Store Toolbar:
 
 ## First things first
 I won’t show `build.gradle` file because it’s the same as in [part 1] so we will start from creating a layout for our `Activity`:
-[layout bez zakladek]
+{% gist /mzgreen/54faa3e44ae3de8a682c %}
 
-It’s just a `RecyclerView` and a `Toolbar` (we will add tabs later). Notice that I’m using the second method (with adding padding to `RecyclerView`) described in [previous post]:
-[recycler z paddingiem]
+It’s just a `RecyclerView` and a `Toolbar` (we will add `Tabs` later). Notice that I’m using the second method (with adding padding to `RecyclerView`) described in [previous post].
 
 I will omit a layout file of our list item because it’s exactly the same as [before]. `RecyclerAdapter` was also described so we can skip it ([here] is how it should look - simple adapter, without header).
 
 Let’s jump to our `PartTwoActivity` code:
-[kod activity]
+{% gist /mzgreen/72ef88c35fae6e979f15 %}
 
-It’s a basic initialization of `RecyclerView` and `Toolbar`, notice setting `OnScrollListener` in line XXX.
+It’s a basic initialization of `RecyclerView` and `Toolbar`, notice setting `OnScrollListener` in line 27.
 
 The most interesting part is `HidingScrollListener`, so let’s create it!
-[listener]
+{% gist /mzgreen/95f93c615456c1d72104 %}
 
 If you’ve read [previous part] it should look familiar (actually it’s even simpler right now). What do we have here?
-There is only one variable so far - `toolbarOffset` which holds a scrolled offset relative to `Toolbar’s` height. To put it simply, we want to track only values between 0 and `Toolbar` height so thanks to this:
-[watrnek]
+There is only one important variable so far - `mToolbarOffset` which holds a scrolled offset relative to `Toolbar’s` height. To put it simply, we want to track only values between 0 and `Toolbar` height so thanks to this:
+{% gist /mzgreen/5610dfaaf9756b6d456a %}
 it will be increased if we scroll up (but we don’t want it to be bigger than `Toolbar’s` height) and decreased if we scroll down (again we don’t want it to be lower than 0). You will see why do we restrict these values soon.
+We are also clipping `mToolbarOffset` because it's possible that it will have some value out of our range for a small period of time (e.g. during fling) and it would cause flickering.
 We’ve also defined  `onMoved()` - an abstract method which we call during scroll.
 It may surprise you but this is it for now!
 
 We have to get back to our `PartTwoActivity` and implement `onMoved()` method inside our scroll listener:
-[implementacja]
+{% gist /mzgreen/e108819d31a9e675452b %}
 
 Yup, that’s all. We can run our app and see what do we have:
 ![No snap gif](/images/2/nosnap.gif "No snap gif")
 
-Pretty good, the `Toolbar` is moving along with the list and getting back just as we expect it to. This is thanks to the restrictions that we put on the `toolbarOffset` variable. If we would omit checking if it’s bigger than 0 and lower than `toolbarHeight` then when we would scroll up our list, the `Toolbar` would move along far away off the screen, so to show it back you would have to scroll the list down to 0. Right now it just scrolls up to `toolbarHeight` position and not more so it’s „sitting” right above the list all of the time and if we start scrolling down, we can see it immediately showing.
+Pretty good, the `Toolbar` is moving along with the list and getting back just as we expect it to. This is thanks to the restrictions that we put on the `mToolbarOffset` variable. If we would omit checking if it’s bigger than 0 and lower than `mToolbarHeight` then when we would scroll up our list, the `Toolbar` would move along far away off the screen, so to show it back you would have to scroll the list down to 0. Right now it just scrolls up to `mToolbarHeight` position and not more so it’s „sitting” right above the list all of the time and if we start scrolling down, we can see it immediately showing.
 
 It works pretty well, but this is not what we want. It feels weird that you can stop it in the middle of the scroll and the `Toolbar` will stay half visible. Actually this is how it’s done in Google Play Games app which I consider as a bug.
 
@@ -50,24 +50,19 @@ It works pretty well, but this is not what we want. It feels weird that you can 
 I think that views should smoothly snap to the position like Logo/SearchBar in Chrome app or `Toolbar` in Play Store app. I’m pretty sure that I saw it somewhere in Material guidelines/checklist or heard in one of Google I/O presentations.
 
 Let’s revisit out `HidingScrollListener` code:
-[scroll listener ze snapowaniem]
+{% gist /mzgreen/3e867d8db87aa23aa376 %}
 
-It got a little bit more complicated but there is nothing scary in there. We’ve just overrided the second method of the `RecyclerView.OnScrollListener` class which is `OnStateChanged`. This is what we’re doing in this method:
-- we are checking if the list is in `RecyclerView.STATE_IDLE` state so it’s not scrolling nor flinging (because if it is, we’are translating Y position of the `Toolbar` manually - like before).
-- if we lift up our finger and list has stopped (it’s in idle state) we have to check if it’s visible (this means that we have to hide it if `scrolledOffset` is bigger than `HIDE_THRESHOLD` or we have to show it again if `scrolledOffset` is lower than `SHOW_THRESHOLD`):
-[code dla tego warunku]
+It got a little bit more complicated but there is nothing scary in there. We’ve just overrided the second method of the `RecyclerView.OnScrollListener` class which is `onScrollStateChanged()`. This is what we’re doing in this method:
+- we are checking if the list is in `RecyclerView.SCROLL_STATE_IDLE` state so it’s not scrolling nor flinging (because if it is, we’are translating Y position of the `Toolbar` manually - like before).
+- if we lift up our finger and list has stopped (it’s in `RecyclerView.SCROLL_STATE_IDLE` state) we have to check if it’s visible and if it is, then this means that we have to hide it if `mToolbarOffset` is bigger than `HIDE_THRESHOLD` or we have to show it again if `mToolbarOffset` is lower than `SHOW_THRESHOLD`:
+{% gist /mzgreen/a4f4fb043bc902e386c5 %}
 
-and if it’s not visible then we have to do the opposite - if `scrolledOffset` is bigger than `SHOW_THRESHOLD` then we are showing it and if it’s lower than `HIDE_ThRESHOLD` then we are hiding it again:
-[code dla warunku]
+and if it’s not visible then we have to do the opposite - if `mToolbarOffset` (which now is calculated from top position so it's `mToolbarHeight - mToolbarOffset`) is bigger than `SHOW_THRESHOLD` then we are showing it and if it’s lower than `HIDE_THRESHOLD` then we are hiding it again:
+{% gist /mzgreen/fa7bb444c05315258dd3 %}
 
-Corresponding show/hide methods:
-[metody show i hide]
+`onScrolled()` stays the same as it was, and we don’t have to change anything else here. The last thing that we need to do is to implement our two new abstract methods in `PartTwoActivity` class:
+{% gist /mzgreen/29359ccda3b5e1c68093 %}
 
-And two new abstract methods:
-[show hide abstract methods]
-
-`OnScroll` stays the same as it was, and we don’t have to change anything else here. The last thing that we need to do is to implement our two new abstract methods in `PartTwoActivity` class:
-[implementacja metod] 
 It’s time to build our project and see the effect:
 ![Snap no tabs gif](/images/2/snapnotabs.gif "Snap no tabs gif")
 
@@ -78,41 +73,40 @@ You may think that adding the tabs will complicate the code, so let me show you 
 ##Adding Tabs
 
 We need to modify our `Activity’s` layout:
-[layout z tabami z bugiem]
+{% gist /mzgreen/0f8111db8b780efeb372 %}
 
 and `tabs.xml`:
-[layout tabow]
+{% gist /mzgreen/d77ce91f21e9ceace291 %}
 
 As you can see I’m not adding real `Tabs`, just a layout that mimics their look. It won’t change anything in the implementation. You can put any view here. There are some implementations of the `Tabs` for Material Design available on github or you can create them yourself :)
 
-Adding the `Tabs` means that they will cover our list a little, so we need to increase the padding. To make it  flexible we won’t be setting this in xml, because `Toolbar` can have different height depending on orientation or device (e.g on tablets), so we would have to create a bunch of xml to cover all the cases. Instead we will set the padding in code:
-[code ustawiania paddingu w aktywnosci]
+Adding the `Tabs` means that they will cover our list a little, so we need to increase the padding. To make it  flexible we won’t be setting this in xml (notice removed padding from `RecyclerView` in `part_two_activity.xml`), because `Toolbar` can have different height depending on orientation or device (e.g on tablets), so we would have to create a bunch of xml to cover all the cases. Instead we will set the padding in code:
+{% gist /mzgreen/d3197b0faeb0f8103b71 %}
 It’s pretty simple, we’re setting the padding to be the sum of `Toolbar’s` height and `Tabs’` height.
 If we run this now we will see something like this:
 ![Screen with tabs](/images/2/withtabs.png "Screen with tabs")
 
 It’s all good, our first list item is perfectly visible, so we can move along. Actually we won’t change anything in our `HidingScrollListener` class. The only change that needs to be done is in `PartTwoActivity`:
-[kod aktywnosci z animacja z zakladkami]
+{% gist /mzgreen/28e057f34b7e51bb1592 %}
 
-Can you see what has changed? We are getting `toolbarContainer` reference which is a `LinearLayout` instead of `Toolbar`, and in `onMove`, `onHide` and `onShow` methods we are translating and animating this view instead of `Toolbar`. This will move a whole container that contains the `Toolbar` and `Tabs` and this is exactly what we need to do.
+Can you see what has changed? We are getting `mToolbarContainer` reference which is a `LinearLayout` instead of `Toolbar`, and in `onMove()`, `onHide()` and `onShow()` methods we are translating and animating this view instead of `Toolbar`. This will move a whole container that contains the `Toolbar` and `Tabs` and this is exactly what we need to do.
 
-If we run it we can see that it seems to be working as expected, but… if you look closely you will see that there is some bug in there. Sometimes there is a white line visible between `Tabs` and `Toolbar` for the fraction of a second. It’s probably because they are not perfectly synchronized when they are animating. Fortunately it’s not something that we couldn’t fix:)
+If we run it we can see that it seems to be working as expected, but… if you look closely you will see that there is a little bug in there. Sometimes there is a white line visible between `Tabs` and `Toolbar` for the fraction of a second. It’s probably because they are not perfectly synchronized when they are animating. Fortunately it’s not something that we couldn’t fix:)
 
 The fix is very simple, just put the background of the `Toolbar` and `Tabs` to their parent layout:
-[poprawiony layout z kolrami]
+{% gist /mzgreen/ce503aeba273c322abbb %}
 
 Now even if views are not perfectly synchronized during animation, it won’t be visible.
 There is one more bug, the same that we had in [part 1]. If we are at the top of the list, we can scroll a little bit up and if the `HIDE_THRESHOLD` small enough, the `Toolbar` will hide and there will be an empty space(padding) visible above the list. Again - fix is really simple:
-[code z naprawionym tym czyms]
+{% gist /mzgreen/09ef2f24440fbef5f17a %}
 
-We’ve just added one more variable that holds total scroll offset of the list, and when we are about to check if we should show or hide the `Toolbar`, we first check if we scrolled more than `Toolbar’s` height (if not, we show the `Toolbar` again):
-[kod z warunkiem]
+We’ve just added one more variable that holds total scroll offset of the list, and when we are about to check if we should show or hide the `Toolbar`, we first check if we scrolled more than `Toolbar’s` height (if not, we show the `Toolbar` again).
 
 This is it, let’s run our app!
 ![Working example gif](/images/2/goal.gif "Working example gif")
 
 It’s working very well now :) And it even works with other LayoutManagers without changing anything else:
-[setting with GridLayoutManager]
+{% gist /mzgreen/892c394d6db47eb3708b %}
 
 ![Grid layout](/images/2/grid.png "Grid layout")
 
