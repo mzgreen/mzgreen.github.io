@@ -4,6 +4,9 @@ title: How to hide/show Toolbar when list is scrolling (part 2)
 tags: [android, material design, ui, animations, Toolbar, Tabs]
 ---
 
+This post is outdated, you should jump to [part 3] or stay if you are bored :)
+
+
 This is a second (and the last) post of this series. If you haven't read [part 1] I recommend you to do it. In [previous part] we've learned how to achieve an effect of hiding Toolbar like Google+. Today we will see how we can make it to behave like Google Play Store Toolbar.  Let's begin!
 
 Before we start, I would like to say that I've refactored this [project] a little bit - it's split in two `Activities`: `PartOneActivity` and `PartTwoActivity` that are started from `MainActivity`. Code is in the packages `partone` and `parttwo` so you can easily find classes that interest you.
@@ -131,5 +134,6 @@ Source code of the full project described in this post is available on GitHub [r
 [before]:https://gist.github.com/mzgreen/b44afa284a0c3c4e0b9c#file-recycler_item-xml
 [here]:https://gist.github.com/mzgreen/f0dc97062bb5f1c534b1#file-recycleradapter-java
 [repo]:https://github.com/mzgreen/HideOnScrollExample
+[part 3]:https://mzgreen.github.io/2015/06/23/How-to-hideshow-Toolbar-when-list-is-scrolling%28part3%29/
 
 

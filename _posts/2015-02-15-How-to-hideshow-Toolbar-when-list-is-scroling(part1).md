@@ -4,6 +4,9 @@ title: How to hide/show Toolbar when list is scroling (part 1)
 tags: [android, material design, ui, animations, Toolbar, FAB]
 ---
 
+This post is outdated, you should jump to [part 3] or stay if you are bored :)
+
+
 In this post we will see how to achieve an effect that you can observe in Google+ app - hiding Toolbar and FAB (and any other views) when list is scrolling down and showing it again when it’s scrolling up. This behavior is mentioned in [Material Design Checklist].
 
 > "Where appropriate, upon scrolling down, the app bar can scroll off the screen, leaving more vertical space for content. Upon scrolling back up, the app bar should be shown again.”
@@ -146,3 +149,4 @@ Thanks to [Mirek Stanek] for proof reading this post.
 [series of posts]:https://blog.stylingandroid.com/material-part-4/
 [repo]:https://github.com/mzgreen/HideOnScrollExample
 [Mirek Stanek]:https://twitter.com/froger_mcs
+[part 3]:https://mzgreen.github.io/2015/06/23/How-to-hideshow-Toolbar-when-list-is-scrolling%28part3%29/
