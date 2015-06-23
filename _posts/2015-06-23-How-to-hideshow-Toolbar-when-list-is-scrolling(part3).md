@@ -65,7 +65,7 @@ There are some known issues with FAB and other widgets from [Design Support Libr
 But if we start scrolling, the FAB stays in place and only the `Toolbar` is moving. To address this issue we will create a custom `Behavior` for our FAB. Let's look at the code:
 {% gist /mzgreen/7b77aa4ec95f81c3bed0 %}
 
-It's not a lot of code as you can see. Let's look at the important parts. First we extend an existing `Behavior` that is responsible for moving FAB up and down when `SnackBar` shows and hides (see [Chris Banes's cheesesquare demo app]). Now the first method that we need to override is `layoutDependsOn`. This method tells `CoordinatorLayout` that we want our FAB to depend on `AppBarLayout`. So from now on we will be notified about changes of an `AppBarLayout` size or position. To receive this notification we have to override another method which is `onDependentViewChanged`. In this method we are calculating how much of the `AppBarLayout` is scrolled off the screen and we are scrolling our FAB accordingly. So if a half of our `AppBarLayout` is scrolled off then a half of FAB should also be scrolled off. That's basically it. Calculating ratio and moving FAB. We are calling `super` methods because we don't want to break an existing functionality in the behavior that we are extending from. What we need to do right now is to add this behavior to our FAB. Let's do it then:
+It's not a lot of code as you can see. Let's look at the important parts. First we extend an existing `Behavior` that is responsible for moving FAB up and down when `SnackBar` shows and hides - see [Chris Banes's cheesesquare demo app]. Now the first method that we need to override is `layoutDependsOn`. This method tells `CoordinatorLayout` that we want our FAB to depend on `AppBarLayout`. So from now on we will be notified about changes of an `AppBarLayout` size or position. To receive this notification we have to override another method which is `onDependentViewChanged`. In this method we are calculating how much of the `AppBarLayout` is scrolled off the screen and we are scrolling our FAB accordingly. So if a half of our `AppBarLayout` is scrolled off then a half of FAB should also be scrolled off. That's basically it. Calculating ratio and moving FAB. We are calling `super` methods because we don't want to break an existing functionality in the behavior that we are extending from. What we need to do right now is to add this behavior to our FAB. Let's do it then:
 {% gist /mzgreen/2002e3dd979e22f47cf1 %}
 
 As you can see we are using fully qualified name of our `Behavior` class.
@@ -91,7 +91,7 @@ Source code of the full project described in this post is available on GitHub [r
 [CoordinatorLayout]:http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html
 [Behavior]:http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html
 [Antonio’s blog]:http://antonioleiva.com/floating-action-button/
-[Chris Banes’s cheesesquare demo app]:https://github.com/chrisbanes/cheesesquare
+[Chris Banes's cheesesquare demo app]:https://github.com/chrisbanes/cheesesquare
 [repo]:https://github.com/mzgreen/HideOnScrollExample
 
 
