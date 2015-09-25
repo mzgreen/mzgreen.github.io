@@ -59,7 +59,7 @@ As you can see if you scroll the `Toolbar` off the screen and change tabs, it re
 So the last part is adding a FAB. In [part 1] we had to create it manually. We were using an `ImageButton` with a circular drawable as a background. From now on we have a `FloatingActionButton` widget in the [Design Support Library]! Let's add it to our `activity_part_three.xml` layout file:
 {% gist /mzgreen/7119c87149c6d7a2ccfc %}
 
-There are some known issues with FAB and other widgets from [Design Support Library] but most of them are already fixed so all we have to do is to wait for the release of the updated version. More on using new FAB widget you can read on [Antonio's blog]. Our app now have a `FloatingActionButton`:
+There are some known issues with FAB and other widgets from [Design Support Library] but most of them are already fixed so all we have to do is to wait for the release of the updated version. More on using new FAB widget you can read on [Antonio blog]. Our app now have a `FloatingActionButton`:
 ![App with fab](/images/3/screenwithfab.png "App with fab")
 
 But if we start scrolling, the FAB stays in place and only the `Toolbar` is moving. To address this issue we will create a custom `Behavior` for our FAB. Let's look at the code:
@@ -90,7 +90,7 @@ Source code of the full project described in this post is available on GitHub [r
 [Design Support Library]:http://android-developers.blogspot.com/2015/05/android-design-support-library.html
 [CoordinatorLayout]:http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.html
 [Behavior]:http://developer.android.com/reference/android/support/design/widget/CoordinatorLayout.Behavior.html
-[Antonio’s blog]:http://antonioleiva.com/floating-action-button/
+[Antonio blog]:http://antonioleiva.com/floating-action-button/
 [Chris Banes's cheesesquare demo app]:https://github.com/chrisbanes/cheesesquare
 [repo]:https://github.com/mzgreen/HideOnScrollExample
 
